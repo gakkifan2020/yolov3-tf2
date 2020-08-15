@@ -13,12 +13,12 @@ from tensorflow.python.eager import def_function
 from tensorflow.python.framework import tensor_spec
 from tensorflow.python.util import nest
 
-flags.DEFINE_string('weights', './checkpoints/yolov3.tf',
+flags.DEFINE_string('weights', '../checkpoints/yolov3-tiny.tf',
                     'path to weights file')
-flags.DEFINE_boolean('tiny', False, 'yolov3 or yolov3-tiny')
-flags.DEFINE_string('output', './serving/yolov3/1', 'path to saved_model')
-flags.DEFINE_string('classes', './data/coco.names', 'path to classes file')
-flags.DEFINE_string('image', './data/girl.png', 'path to input image')
+flags.DEFINE_boolean('tiny', True, 'yolov3 or yolov3-tiny')
+flags.DEFINE_string('output', '../serving/yolov3/1', 'path to saved_model')
+flags.DEFINE_string('classes', '../data/coco.names', 'path to classes file')
+flags.DEFINE_string('image', '../data/street.jpg', 'path to input image')
 flags.DEFINE_integer('num_classes', 80, 'number of classes in the model')
 
 

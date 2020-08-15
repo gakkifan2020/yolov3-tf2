@@ -10,11 +10,11 @@ from yolov3_tf2.models import (
 from yolov3_tf2.dataset import transform_images, load_tfrecord_dataset
 from yolov3_tf2.utils import draw_outputs
 
-flags.DEFINE_string('classes', './data/voc2012.names', 'path to classes file')
-# flags.DEFINE_string('classes', './data/coco.names', 'path to classes file')
+# flags.DEFINE_string('classes', './data/voc2012.names', 'path to classes file')
+flags.DEFINE_string('classes', './data/coco.names', 'path to classes file')
 flags.DEFINE_string('weights', './checkpoints/yolov3.tf',
                     'path to weights file')
-flags.DEFINE_boolean('tiny', False, 'yolov3 or yolov3-tiny')
+flags.DEFINE_boolean('tiny', False, 'yolov3 or yolov3')
 flags.DEFINE_integer('size', 416, 'resize images to')
 flags.DEFINE_string('image', './data/street.jpg', 'path to input image')
 flags.DEFINE_string('tfrecord', None, 'tfrecord instead of image')
