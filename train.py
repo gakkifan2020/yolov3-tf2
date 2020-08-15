@@ -20,8 +20,8 @@ import yolov3_tf2.dataset as dataset
 
 flags.DEFINE_string('dataset', './data/voc2012_train.tfrecord', 'path to dataset')
 flags.DEFINE_string('val_dataset', './data/voc2012_val.tfrecord', 'path to validation dataset')
-flags.DEFINE_boolean('tiny', True, 'yolov3 or yolov3-tiny')
-flags.DEFINE_string('weights', './checkpoints/yolov3_train_7.tf',
+flags.DEFINE_boolean('tiny', False, 'yolov3 or yolov3-tiny')
+flags.DEFINE_string('weights', './checkpoints/yolov3.tf',
                     'path to weights file')
 flags.DEFINE_string('classes', './data/voc2012.names', 'path to classes file')
 flags.DEFINE_enum('mode', 'fit', ['fit', 'eager_fit', 'eager_tf'],
@@ -40,7 +40,7 @@ flags.DEFINE_integer('epochs', 1000, 'number of epochs')
 flags.DEFINE_integer('batch_size', 32, 'batch size')
 flags.DEFINE_float('learning_rate', 0.001, 'learning rate')
 flags.DEFINE_integer('num_classes', 20, 'number of classes in the model')
-flags.DEFINE_integer('weights_num_classes', 20, 'specify num class for `weights` file if different, '
+flags.DEFINE_integer('weights_num_classes', 80, 'specify num class for `weights` file if different, '
                      'useful in transfer learning with different number of classes')
 
 
