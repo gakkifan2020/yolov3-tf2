@@ -20,15 +20,15 @@ import yolov3_tf2.dataset as dataset
 
 flags.DEFINE_string('dataset', './data/voc2012_train.tfrecord', 'path to dataset')
 flags.DEFINE_string('val_dataset', './data/voc2012_val.tfrecord', 'path to validation dataset')
-flags.DEFINE_boolean('tiny', False, 'yolov3 or yolov3-tiny')
-flags.DEFINE_string('weights', './checkpoints/yolov3_train_1.tf',
+flags.DEFINE_boolean('tiny', True, 'yolov3 or yolov3-tiny')
+flags.DEFINE_string('weights', './checkpoints/yolov3-tiny.tf',
                     'path to weights file')
 flags.DEFINE_string('classes', './data/voc2012.names', 'path to classes file')
 flags.DEFINE_enum('mode', 'fit', ['fit', 'eager_fit', 'eager_tf'],
                   'fit: model.fit, '
                   'eager_fit: model.fit(run_eagerly=True), '
                   'eager_tf: custom GradientTape')
-flags.DEFINE_enum('transfer', 'fine_tune',
+flags.DEFINE_enum('transfer', 'darknet',
                   ['none', 'darknet', 'no_output', 'frozen', 'fine_tune'],
                   'none: Training from scratch, '
                   'darknet: Transfer darknet, '
@@ -96,6 +96,7 @@ def main(_argv):
         else:
             model_pretrained = YoloV3(
                 FLAGS.size, training=True, classes=FLAGS.weights_num_classes or FLAGS.num_classes)
+
         model_pretrained.load_weights(FLAGS.weights)
 
         if FLAGS.transfer == 'darknet':
@@ -109,7 +110,7 @@ def main(_argv):
                     l.set_weights(model_pretrained.get_layer(
                         l.name).get_weights())
                     freeze_all(l)
-
+        model.summary()
     else:
         # All other transfer require matching classes
         model.load_weights(FLAGS.weights)
